@@ -1,6 +1,5 @@
 from pydantic import BaseModel, EmailStr
 
-
 # Modelo de usuario simulado
 fake_users_db = {
 "cristian.moreno.tech@gmail.com": {
@@ -27,6 +26,7 @@ def get_user(db, username: str):
 
 class UserCreate(BaseModel):
     username: str
+    full_name: str
     email: EmailStr
     password: str
 
@@ -36,4 +36,4 @@ class UserResponse(BaseModel):
     full_name: str = None
 
     class Config:
-        orm_mode = True
+        from_attributes = True

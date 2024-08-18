@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from datetime import timedelta
-from app.crud.user import authenticate_user
+from app.crud.user import authenticate_user, create_user
 from app.core.security import create_access_token, decode_access_token
-from app.models.user import get_user
+from app.models.user import get_user, UserCreate
 
 # Define un router para las rutas de autenticación
 router = APIRouter()
@@ -48,4 +48,6 @@ async def read_users_me(token: str = Depends(oauth2_scheme)):
         raise credentials_exception
     return user
 
-# @router.post("/users/create")
+@router.post("/users/")
+async def register_user(user: UserCreate):
+    return await create_user(user)
