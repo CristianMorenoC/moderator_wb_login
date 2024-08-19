@@ -16,13 +16,12 @@ fake_users_db = {
     }
 }
 
-def get_user(db, username: str):
-    """
+""" def get_user(db, username: str):
     Busca y devuelve un usuario del diccionario simulado por nombre de usuario.
-    """
+
     if username in db:
         return db[username]
-    return None
+    return None """
 
 class UserCreate(BaseModel):
     username: str
